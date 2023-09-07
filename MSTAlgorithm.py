@@ -7,6 +7,7 @@
 def sorting_key(x):
     return x[1]
 
+
 class Graph:
     def __init__(self):
         self.adjacency_list = {}  # undirected graph
@@ -52,14 +53,10 @@ class Graph:
                 self.adjacency_list[source].append(destination)
 
 
-
 graph = Graph()
 vertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 edges = [('A', 'B', 2), ('A', 'C', 3), ('A', 'D', 5), ('B', 'D', 7), ('B', 'E', 9), ('C', 'D', 6),
          ('C', 'F', 8), ('D', 'E', 4), ('D', 'F', 6), ('D', 'G', 4), ('E', 'G', 1), ('F', 'G', 8)]
-
-# edges = [('A', 'B', 2), ('A', 'C', 3), ('A', 'D', 5), ('B', 'D', 7), ('B', 'E', 9), ('C', 'D', 6),
-#          ('D', 'E', 4), ('D', 'G', 4), ('E', 'G', 1)]
 
 for vertex in vertices:
     graph.add_vertex(vertex)
@@ -68,7 +65,6 @@ for edge in edges:
     graph.add_edge(edge[0], edge[1], edge[2])
 
 print(graph.adjacency_list)
-# print(graph.adjacency_list.items())
 graph.no_connected_vertices = graph.DFS('A')
 print(graph.no_connected_vertices)
 graph.mst('A')
