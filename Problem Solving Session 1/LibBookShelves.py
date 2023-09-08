@@ -25,7 +25,6 @@ def arrange(books, l):
 
 
 def main():
-    no_books = 9
     book_shelves_length = 10
     books = [3, 4, 1, 5, 4, 8, 3, 2, 1]
     print(arrange(books, book_shelves_length))
