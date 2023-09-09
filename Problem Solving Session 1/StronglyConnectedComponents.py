@@ -15,29 +15,46 @@ class Graph:
     def add_edges(self, s_d_pair):
         self.adList[s_d_pair[0]].append(s_d_pair[1])
 
-    def dfs(self, source, visited):
+    def dfs(self, source, visited, stack):
         global time
         self.preTime[source] = time
         time += 1
         visited.append(source)
         for neighbour in self.adList[source]:
-            if  neighbour not in visited:
-                self.dfs(neighbour, visited)
-
+            if neighbour not in visited:
+                self.dfs(neighbour, visited, stack)
+        stack.append(source)
         self.postTime[source] = time
         time += 1
 
-    def transpose(self, transpose):
+    def transpose(self):
+        transpose = Graph()
         for i in self.adList:
             transpose.adList[i] = []
         for i in self.adList:
             for j in self.adList[i]:
                 transpose.adList[j].append(i)
+        return transpose
 
     def sorting_fin_time(self):
+        self.dfs(1, [], [])
         vertices_list = list(self.postTime.items())
         vertices_list.sort(key=mysort, reverse=True)
+        for i in range(len(vertices_list)):
+            vertices_list[i] = vertices_list[i][0]
         return vertices_list
+
+    def scc(self, reversed, sorted):
+        scc_list = []
+        visited = []
+
+        while sorted:
+            v = sorted.pop(0)
+            if v not in visited:
+                stack = []
+                reversed.dfs(v, visited, stack)
+                scc_list.append(stack)
+        return scc_list
 
 
 graph = Graph()
@@ -49,16 +66,9 @@ for _ in vertices:
 for _ in edges:
     graph.add_edges(_)
 print(graph.adList)
+
 time = 1
-graph.dfs(1, [])
-print("Discovery time = ", graph.preTime)
-print("Finish time = ", graph.postTime)
+print(graph.sorting_fin_time())
 
-graph_transpose = Graph()
-graph.transpose(graph_transpose)
-print(graph_transpose.adList)
-
-sorted_vertices = graph.sorting_fin_time()
-
-
-
+scc_list = graph.scc(graph.transpose(), graph.sorting_fin_time())
+print(scc_list)
