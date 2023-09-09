@@ -4,12 +4,26 @@
 class Graph:
     def __init__(self):
         self.adList = {}  # direcrted unweighted graph
+        self.preTime = {}
+        self.postTime = {}
 
     def add_vertices(self, vertex):
         self.adList[vertex] =[]
 
     def add_edges(self, s_d_pair):
         self.adList[s_d_pair[0]].append(s_d_pair[1])
+
+    def dfs(self, source, visited):
+        global time
+        self.preTime[source] = time
+        time += 1
+        visited.append(source)
+        for neighbour in self.adList[source]:
+            if  neighbour not in visited:
+                self.dfs(neighbour, visited)
+
+        self.postTime[source] = time
+        time += 1
 
 
 graph = Graph()
@@ -21,7 +35,11 @@ for _ in vertices:
 for _ in edges:
     graph.add_edges(_)
 
-print(graph.adList)
+time = 1
+graph.dfs(1, [])
+print("Discovery time = ", graph.preTime)
+print("Finish time = ", graph.postTime)
+
 
 
 
