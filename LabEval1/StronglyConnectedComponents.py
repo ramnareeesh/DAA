@@ -72,3 +72,4 @@ print("Vertices sorted based on finish time: ", graph.sorting_fin_time())
 
 scc_list = graph.scc(graph.transpose(), graph.sorting_fin_time())
 print("Strongly connected components present: ", scc_list)
+
