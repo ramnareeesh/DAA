@@ -40,7 +40,7 @@ class Graph:
     def mst(self, source):
         sorted_edges = list(self.edges.items())
         sorted_edges.sort(key=sorting_key, reverse=True)
-        print(sorted_edges)
+        # print(sorted_edges)
 
         while sorted_edges:
             edge = sorted_edges.pop(0)
