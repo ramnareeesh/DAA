@@ -52,5 +52,6 @@ def huffman_encoding(data):
 if __name__ == '__main__':
     # input case from lecture
     data = "bbbbbeeeeeeeeeeccccccccccccaaaaaaaaaaaaaaaadddddddddddddddddffffffffffffffffffffffffff"
+    # data = "huffman code"
     encoded, tree = huffman_encoding(data)
     print(encoded)
