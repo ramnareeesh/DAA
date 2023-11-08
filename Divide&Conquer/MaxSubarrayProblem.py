@@ -37,5 +37,5 @@ def maxSubarraySum(arr, low, high):
 
 
 if __name__ == '__main__':
-    in_arr = [-2, -3, -4, -5, -1]
+    in_arr = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
     print("Maximum Subarray Sum: ", maxSubarraySum(in_arr, low=0, high=len(in_arr) - 1))
