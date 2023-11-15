@@ -9,15 +9,15 @@ def Knapsack(weight, value, bag_size, item_number):
         return Knapsack(weight, value, bag_size, item_number-1)
 
 def Knapsack_Mem(weight, value, size, items, t):
-    if items == 0 or size == 0:  # base condition
+    if items == 0 or size == 0:  # base condition 1
         return 0
-    if t[items][size] != -1:
+    if t[items][size] != -1:  # base condition 2
         return t[items][size]
-    if weight[items-1] <= size:
+    if weight[items-1] <= size:  # recursive condition 1
         t[items][size] = max(value[items-1] + Knapsack_Mem(weight, value, size-weight[items-1], items-1, t),
                              Knapsack_Mem(weight, value, size, items-1, t))
         return t[items][size]
-    elif weight[items-1] > size:
+    elif weight[items-1] > size:  # recursive condition 2
         t[items][size] = Knapsack_Mem(weight, value, size, items-1, t)
         return t[items][size]
 
