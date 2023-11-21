@@ -14,7 +14,14 @@ def max_subarray_sum(arr):
             s = i+1
     return max_so_far, arr[start:end+1]
 
+def max_sub_dp(arr):
+    dp = [0]
+    for i in range(1, len(arr)):
+        dp.append(max(arr[i], arr[i] + dp[i-1]))
+    return dp
+
 
 if __name__ == '__main__':
     a = [-2, -3, 4, -1, -2, 1, 5, -3]
     print(max_subarray_sum(a))
+    print(max_sub_dp(a))
