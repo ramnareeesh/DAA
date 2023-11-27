@@ -28,3 +28,4 @@ if __name__ == '__main__':
 
     print("No of coins used = ", no_coins)
     print("Coin denominations used are: ", change_coins)
+    print(coins_used)
